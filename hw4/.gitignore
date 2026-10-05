@@ -1,0 +1,47 @@
+# ===== Environment / secrets (NEVER commit) =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+test_accounts.local.md
+*.local.md
+
+# ===== Local data pack (provided separately; NEVER commit) =====
+# The real database and product images live in data/ on your machine only.
+data/
+campus_customs.db
+**/campus_customs.db
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+products/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# ===== Node / frontend build =====
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+*.tsbuildinfo
+
+# ===== Audit trail write helpers =====
+# output/audit_trail.json itself IS committed (assignment evidence).
+output/*.lock
+output/*.tmp
+output/audit_trail.unreadable-*.json
+
+# ===== OS / editor / local tooling =====
+.DS_Store
+.vscode/
+.idea/
+.claude/
+*.log

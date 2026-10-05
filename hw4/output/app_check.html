@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campus Customs — Application Check</title>
+    <style>
+      :root {
+        --navy: #0b1f3f;
+        --brass: #855d12;
+        --paper: #faf7f1;
+        --line: #e4dccc;
+        --muted: #5d6578;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: #121a2e;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.55;
+      }
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+      }
+      header {
+        border-bottom: 3px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        color: var(--navy);
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin: 0 0 0.4rem;
+      }
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+      nav ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        padding: 0;
+        margin: 1rem 0 0;
+        list-style: none;
+      }
+      nav a {
+        color: var(--navy);
+        font-weight: 600;
+      }
+      section {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        font-family: Georgia, 'Times New Roman', serif;
+        color: var(--navy);
+        font-size: 1.6rem;
+        margin: 0 0 1rem;
+      }
+      figure {
+        margin: 0;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      figcaption {
+        margin-top: 1rem;
+        font-size: 1.05rem;
+      }
+      figcaption strong {
+        color: var(--brass);
+      }
+      .facts {
+        margin: 0.75rem 0 0;
+        padding-left: 1.2rem;
+        color: var(--muted);
+      }
+      footer {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Campus Customs — Application Check</h1>
+        <p>
+          Screenshots taken from the live app (React + Vite frontend → FastAPI → PydanticAI agent →
+          <code>campus_customs.db</code>). Each result was checked against the database before it was captured.
+        </p>
+        <nav aria-label="Sections">
+          <ol>
+            <li><a href="#inventory">1. Inventory / Price</a></li>
+            <li><a href="#dynamic">2. Dynamic Product Search</a></li>
+            <li><a href="#usability">3. Problem 9 Usability Feature</a></li>
+          </ol>
+        </nav>
+      </header>
+
+      <section id="inventory">
+        <h2>1. Chat — Inventory and Price</h2>
+        <figure>
+          <img src="app_check_images/inventory.png" alt="Campus Customs chatbot on the Yale Grandpa Hoodie page answering: $68.00 and 25 in stock in Medium" />
+          <figcaption>
+            <strong>Caption:</strong> On the Yale Grandpa Hoodie product page, the shopper asked “How much is this, and
+            how many do you have in stock in Medium?” The chatbot looked up the database and answered
+            <strong>$68.00</strong> and <strong>25 in stock in Medium</strong>, the exact values in
+            <code>campus_customs.db</code>.
+            <ul class="facts">
+              <li>Database: <code>catalogue.price</code> = 68.0; <code>inventory</code> (yale-grandpa-hoodie, M) = 25.</li>
+              <li>“This” resolved to the open product via page context (the “Viewing: Yale Grandpa Hoodie” strip in the chat).</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="dynamic">
+        <h2>2. Chat — Dynamic Product Search</h2>
+        <figure>
+          <img src="app_check_images/dynamic_products.png" alt="Shopper asks 'What hoodies do you have?' and the chatbot replies with hoodie product cards" />
+          <figcaption>
+            <strong>Caption:</strong> The shopper asked “What hoodies do you have?” The agent searched the catalogue
+            (27 hoodies), returned structured product matches, and the chat rendered them as clickable product cards
+            with real photos, names, and prices.
+            <ul class="facts">
+              <li>Cards returned: Basic Hoodie Big Yale ($68), Brooks Brothers Double Knit Full Zip Hoodie Yale ($88), Champion Reverse Weave Hoodie 1 ($68), Crew Left Chest Hoodie, District Vit Hoodie Vintage Bulldog, District Vit Hoodie Vintage Sailor Bulldog. All six are hoodies in the database.</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="usability">
+        <h2>3. Problem 9 Usability Feature — Product Search &amp; Filters</h2>
+        <figure>
+          <img src="app_check_images/usability.png" alt="Products page with Hoodies, Navy, $60–$80 and In stock in M filters active, showing 15 of 102 products" />
+          <figcaption>
+            <strong>Caption:</strong> On the Products page, the shopper applied the Problem 9 filters <strong>Hoodies</strong>,
+            <strong>Navy</strong>, <strong>$60–$80</strong>, and <strong>In stock in M</strong>. The catalogue narrowed to
+            <strong>15 of 102 products</strong>, with each filter shown as a removable pill and a “Clear all” option.
+            <ul class="facts">
+              <li>The count 15 matches a direct database query (navy hoodies priced $60–$80 with Medium in stock).</li>
+            </ul>
+          </figcaption>
+        </figure>
+      </section>
+
+      <footer>Captured from the running app at 1440×960 (2× resolution) with Playwright/Chromium. No mock data or edited images.</footer>
+    </main>
+  </body>
+</html>

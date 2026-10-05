@@ -1,0 +1,8 @@
+# Campus Customs backend (install with: pip install -r requirements.txt).
+# Built and tested with Python 3.14; versions match the course's Homework 3 setup where shared.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+itsdangerous>=2.1            # signed session cookies (Starlette SessionMiddleware)
+pydantic-ai-slim[openai]==2.43.0
+openai==3.14.0
+python-dotenv==1.2.3

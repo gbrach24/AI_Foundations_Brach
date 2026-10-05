@@ -1,0 +1,7 @@
+# Repository root guard: only the hw4/ project (and these root files) can be added.
+# hw4/.gitignore additionally keeps .env, the local data pack (data/), virtualenvs,
+# node_modules, and build output out of Git.
+/*
+!/.gitignore
+!/README.md
+!/hw4/
