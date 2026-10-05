@@ -99,7 +99,11 @@ Prompt I gave the vibe coder:
 
 Follow-up prompt:
 
+> If a product name matches several products (like "the Yale hoodie"), don't pick one; return the options and have the agent ask which one the shopper means.
+
 What was lacking after the first prompt:
+
+The first prompt didn't say what to do when a product name matches several products, so I had to make sure the agent asks which one instead of guessing.
 
 ## Problem 7 — Catalogue Search & Dynamic Product Cards
 
@@ -119,7 +123,11 @@ Prompt I gave the vibe coder:
 
 Follow-up prompt:
 
+> Test precision, not just results: "shirts" must not return sweatshirts, and "hats" must return nothing if we don't sell hats. Show me the match counts by category for each example query.
+
 What was lacking after the first prompt:
+
+The first prompt didn't define what counts as a correct match, so search precision (e.g. "shirts" matching "sweatshirts") had to be specified and checked by category.
 
 ## Problem 8 — Persistent, Context-Aware Chat
 
@@ -143,7 +151,11 @@ Prompt I gave the vibe coder:
 
 Follow-up prompt:
 
+> When a guest logs in, start a fresh chat showing their saved history (don't merge in the guest chat). Make sure logins survive a backend restart, so "returning later" actually works.
+
 What was lacking after the first prompt:
+
+The first prompt didn't cover what happens to a guest's chat at login or whether logins survive a server restart, both of which matter for "returning later".
 
 ## Problem 9 — Usability Improvements
 
@@ -209,7 +221,11 @@ Prompt I gave the vibe coder:
 
 Follow-up prompt:
 
+> Screenshots must be high-resolution PNGs where the chat text is easily readable. If a screenshot can't show the feature clearly (e.g. too few product cards visible), fix the UI rather than cropping around it.
+
 What was lacking after the first prompt:
+
+The first prompt didn't set a screenshot quality bar or say what to do when the UI couldn't show a feature clearly, which led to low-resolution and cramped first attempts.
 
 ## Problem 12 — Audit Trail, Safety Rules & Final Harness
 
